@@ -1,0 +1,15 @@
+div {
+    display: flex;
+    flex-flow: column;
+    
+    form {
+        input[type="image"] {
+            width: 30px;
+            height: 25px;
+            margin: 2px;
+        }
+        input[type="text"] {
+            border-radius: 5px;
+        }
+    }
+}

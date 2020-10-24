@@ -1,0 +1,27 @@
+ul {
+    list-style-type: none;
+    background-color: #FAFAFA;
+    width: 250px;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 140px repeat(4, 65px) 1fr;
+    li {
+        margin-left: 30%;
+        font-weight: bold;
+        a {
+            color: black;
+        }
+        &:first-child {
+            margin-left: 0;
+            margin-top: -30px;
+            display: grid;
+            place-items: center;
+        }
+        &:last-child {
+            margin-top: auto;
+            margin-bottom: 40px;
+        }
+    }
+}
