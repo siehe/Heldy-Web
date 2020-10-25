@@ -6,7 +6,7 @@ import AsideListItem from './AsideListItem/AsideListItem';
 import './AsideList.module.scss';
 
 const AsideList = () => {
-    return <ul> {Object.values(pagesNames).map(page => (<AsideListItem page={page}/>))}</ul>
+    return <ul> {Object.values(pagesNames).map(page => (<AsideListItem page={page} key={page.name}/>))}</ul>
 };
 
 export default AsideList;

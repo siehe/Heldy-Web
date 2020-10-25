@@ -2,16 +2,18 @@ import React from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 
 const TaskCard = ({task = {}, index}) => {
-    return <Draggable key={Math.random()} draggableId={Math.random()} index={index}>
-        {(provided, snapshot) => (<div
-                    ref={provided.innerRef}
-                    {...provided.dragHandleProps}
-                    {...provided.draggableProps}
-                    >
-                    {task.name}
-                </div>)
-        }
-    </Draggable>;
+    return <Draggable draggableId={task.name} index={index}>
+    {(provided, snapshot) => (
+      <div
+        {...provided.draggableProps}
+        {...provided.dragHandleProps}
+        ref={provided.innerRef}
+        isDragging={snapshot.isDragging}
+      >
+        {task.name}
+      </div>
+    )}
+  </Draggable>;
 }
 
 export default TaskCard;

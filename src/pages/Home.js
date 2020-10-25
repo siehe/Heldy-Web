@@ -6,9 +6,9 @@ import Search from '../components/Board/Search/Search';
 import styles from './Home.module.scss';
 
 const HomePage = () => {
-    return <div className={styles.contentWrapper}>
+    return <div className={styles.rootWrapper}>
         <h1>Student board</h1>
-        <div className={styles.boardWrapper}>
+        <div className={styles.contentWrapper}>
             <Search />
             <Board />
         </div>

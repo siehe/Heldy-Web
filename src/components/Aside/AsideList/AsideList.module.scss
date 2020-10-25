@@ -5,6 +5,7 @@ ul {
     padding: 0;
     margin: 0;
     height: 100%;
+    font-size: 25px;
     display: grid;
     grid-template-rows: 140px repeat(4, 65px) 1fr;
     li {
