@@ -1,5 +1,5 @@
-export const LOAD_USER_LIST = 'LOAD_TODO_LIST';
-export const RESOLVE_USER_LIST = 'RENDER_TODO_LIST';
+export const LOAD_USER_LIST = 'LOAD_USER_LIST';
+export const RESOLVE_USER_LIST = 'RENDER_USER_LIST';
 
 
 export const loadUserList = (payload) => {

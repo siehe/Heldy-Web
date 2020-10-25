@@ -1,4 +1,4 @@
-import { RESOLVE_USER_COLUMNS } from "../actions/userColumns";
+import { RESOLVE_USER_COLUMNS } from "../actions/userCategories";
 import { RESOLVE_USER_LIST } from "../actions/userList";
 
 const initialState = {

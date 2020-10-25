@@ -2,23 +2,32 @@ import React, { useEffect, useState } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
 import TaskList from './TaskList/TaskList';
 
-import { boardLists } from '../../constants/boardLists';
+import { modifyBoardLists } from '../../utils/boardUtil';
 
 import styles from './Board.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadUserList } from '../../store/actions/userList';
+import { loadUserCategories } from '../../store/actions/userCategories';
 
-const getColumn = (id, list) => list.find(el => el.alias === id);
+const getColumn = (id, lists) => lists.find(el => el.id === +id);
 
 const Board = () => {
-    const [boardColumns, setBoardColumns] = useState(boardLists);
     const dispatch = useDispatch();
-
     const userTasksList = useSelector((store) => store.userTasksList);
+    const userColumns = useSelector((store) => store.userColumns);
+
+    const [boardColumns, setBoardColumns] = useState([]);
 
     useEffect(() => {
+        dispatch(loadUserCategories());
         dispatch(loadUserList(2));
     }, [])
+
+    useEffect(() => {
+        if(userTasksList.length && userColumns.length) {
+            setBoardColumns(modifyBoardLists(userTasksList, userColumns));
+        }
+    }, [userTasksList, userColumns])
 
     const onDragEnd = (result) => {
         const { source, destination, draggableId } = result;
@@ -31,24 +40,45 @@ const Board = () => {
             return;
         }
         const columnStart = getColumn(source.droppableId, boardColumns);
-        const coloumnFinish = getColumn(destination.droppableId, boardColumns);
-        
-        const newItemsIds = [...columnStart.tasksList];
-        newItemsIds.splice(source.index, 1)
+        const columnFinish = getColumn(destination.droppableId, boardColumns);
+        const columns = [...boardColumns];
 
-        newItemsIds.splice(destination.index, 0, {name: draggableId})
+        if (columnStart.id === columnFinish.id) {
+            const newItems = [...columnStart.lists];
 
-        const newColumnStart = {
-            ...columnStart,
-            tasksList: newItemsIds
+            const deletedItem = newItems.splice(source.index, 1)
+
+            newItems.splice(destination.index, 0, deletedItem);
+        } else {
+            const newStartItems = [...columnStart.lists];
+
+            const deletedItem = newStartItems.splice(source.index, 1)[0];
+
+            const newColumnStart = {
+                ...columnStart,
+                lists: newStartItems
+            };
+
+            const newFinishItems = [...columnFinish.lists];
+
+            newFinishItems.splice(destination.index, 0, deletedItem);
+
+            const newColumnFinish = {
+                ...columnFinish,
+                lists: newFinishItems
+            }
+
+            columns.splice(newColumnStart.id - 1, 1, newColumnStart);
+            
+            columns.splice(newColumnFinish.id - 1, 1, newColumnFinish);
+            console.log(columns);
+            setBoardColumns(columns);
         }
-
-        setBoardColumns(newColumnStart);
     }
 
     return <div className={styles.boardWrapper}>
         <DragDropContext onDragEnd={onDragEnd}>
-            {boardColumns.map(({ name, alias, tasksList }) =>(<TaskList tasks={tasksList} name={name} alias={alias} key={Math.random()}></TaskList>))}
+            {boardColumns.map(({ name, id, lists }) => (<TaskList tasks={lists} name={name} id={id} key={id}></TaskList>))}
         </DragDropContext>
     </div>
 }
