@@ -1,12 +1,13 @@
-form {
+.form {
     display: flex;
     flex-flow: column;
     justify-content: space-between;
     width: 300px;
     height: 50%;
     input {
-        border: none;
-        border: .5px solid lightblue;
+        font-size: 30px;
+        border-radius: 3px;
+        border: 2px solid rgb(126, 126, 126);
     }
     input[type="submit"] {
         background-color: transparent;

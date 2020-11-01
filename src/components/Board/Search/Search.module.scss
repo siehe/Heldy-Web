@@ -1,6 +1,8 @@
-div {
+.container {
     display: flex;
-    flex-flow: column;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
     
     form {
         input[type="image"] {
@@ -11,5 +13,17 @@ div {
         input[type="text"] {
             border-radius: 5px;
         }
+    }
+    button {
+        width: 100px;
+        font-size: 20px;
+        height: 45px;
+        border: none;
+        cursor: pointer;
+        background: #FAFAFA;
+        border: 0.25px solid #000000;
+        box-sizing: border-box;
+        border-radius: 8px;
+        border-radius: 3px;
     }
 }

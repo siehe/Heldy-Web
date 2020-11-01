@@ -5,10 +5,35 @@
     h1 {
         color: #4E5B57;
         font-size: 50px;
-        margin-bottom: 40px;
+        margin: 40px;
     }
     .contentWrapper {
         display: grid;
         height: 100%;
+    }
+    .boardContainer {
+        height: 100%;
+    }
+    .header {
+        display: flex;
+        flex-direction: row;
+        height: min-content;
+        width: 100%;
+        justify-content: space-between;
+        padding-right: 30px;
+        button {
+            width: 256px;
+            height: 51px;
+            background-color: transparent;
+            margin-left: 10px;
+            font-size: 20px;
+            border: none;
+            cursor: pointer;
+            background: #FAFAFA;
+            border: 0.25px solid #000000;
+            box-sizing: border-box;
+            border-radius: 8px;
+            border-radius: 3px;
+        }
     }
 }

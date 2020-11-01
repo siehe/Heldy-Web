@@ -4,7 +4,6 @@ import { LOAD_USER_LIST, RESOLVE_USER_LIST } from '../actions/userList';
 export function* fetchToDoList({payload}) {
 
   const endpoint = 'https://localhost:44369/tasks/' + payload;
-  console.log("Authorization", localStorage.getItem("token"));
   const apiCall = () => {
     return fetch(endpoint, {
       headers: {

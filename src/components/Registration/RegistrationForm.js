@@ -2,10 +2,12 @@ import React, {useState} from 'react';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
 
-import './RegistrationForm.module.scss';
+import styles from './RegistrationForm.module.scss';
 
 
 const RegistrationForm = () => {
+    const passwordPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[*.!@$%^&(){}[]:;<>,.?~_+-=|\]).{8,32}$";
+
     const [dob, setStartDate] = useState(new Date());
     const [name, SetName] = useState('');
     const [surname, setSurname] = useState('');
@@ -37,22 +39,22 @@ const RegistrationForm = () => {
     }
 
     return <>
-        <form onSubmit={handleFormSubmit}>
-            <input type="text" placeholder="Name" onChange={(e) => SetName(e.target.value)}/>
-            <input type="text" placeholder="Surname" onChange={(e) => setSurname(e.target.value)}/> 
-            <input type="text" placeholder="Second name" onChange={(e) => setSecondName(e.target.value)}/> 
+        <form onSubmit={handleFormSubmit} className={styles.form}>
+            <input type="text" required placeholder="Name" onChange={(e) => SetName(e.target.value)}/>
+            <input type="text" required placeholder="Surname" onChange={(e) => setSurname(e.target.value)}/> 
+            <input type="text" required placeholder="Second name" onChange={(e) => setSecondName(e.target.value)}/> 
             <DayPickerInput
                 inputProps={{ style: { width: '300px' } }}
                 onDayChange={handleDayChange}
                     dayPickerProps={{
-                        month: new Date(2018, 10),
+                        month: new Date(),
                         showWeekNumbers: true,
                 }}
             />
-            <input type="text" placeholder="Email" onChange={(e) => setEmail(e.target.value)}/> 
-            <input type="text" placeholder="Password" onChange={(e) => setPassword(e.target.value) }/> 
-            <input type="text" placeholder="Repeat password" onChange={e => setRepeatPassword(e.target.value)}/> 
-            <input type="submit"/>
+            <input type="email" required placeholder="Email" onChange={(e) => setEmail(e.target.value)}/> 
+            <input type="password" required placeholder="Password" pattern={passwordPattern} onChange={(e) => setPassword(e.target.value) }/> 
+            <input type="password" required placeholder="Repeat password" pattern={passwordPattern} onChange={e => setRepeatPassword(e.target.value)}/> 
+            <input type="submit" value="Register"/>
         </form>
     </>;
 }

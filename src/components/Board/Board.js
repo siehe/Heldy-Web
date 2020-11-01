@@ -30,7 +30,7 @@ const Board = () => {
     }, [userTasksList, userColumns])
 
     const onDragEnd = (result) => {
-        const { source, destination, draggableId } = result;
+        const { source, destination } = result;
 
         if (!destination) {
           return;

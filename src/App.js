@@ -9,11 +9,14 @@ import styles from './App.module.scss';
 import HomePage from './pages/Home.js';
 import RegistrationPage from './pages/RegistrationPage/RegistrationPage.js';
 import LoginPage from './pages/LoginPage/LoginPage.js';
+import { useSelector } from 'react-redux';
 
 function App() {
+  const isLoggedIn = useSelector((store) => store.isLoggedIn);
+
   return (
-    <div className={styles.mainWrapper}>
-      <Aside />
+    <div className={isLoggedIn ? styles.mainWrapper : ''}>
+      {isLoggedIn ? <Aside /> : null}
       <Switch>
         <Route path="/board" component={HomePage}/>
         <Route path="/profile"/>
