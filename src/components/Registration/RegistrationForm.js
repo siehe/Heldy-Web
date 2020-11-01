@@ -6,7 +6,7 @@ import styles from './RegistrationForm.module.scss';
 
 
 const RegistrationForm = () => {
-    const passwordPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[*.!@$%^&(){}[]:;<>,.?~_+-=|\]).{8,32}$";
+    const passwordPattern = "(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}";
 
     const [dob, setStartDate] = useState(new Date());
     const [name, SetName] = useState('');
@@ -38,25 +38,28 @@ const RegistrationForm = () => {
         }).then(data => console.log(data))
     }
 
-    return <>
+    return <div className={styles.container}>
+        <h4>
+            Sign up
+        </h4>
         <form onSubmit={handleFormSubmit} className={styles.form}>
             <input type="text" required placeholder="Name" onChange={(e) => SetName(e.target.value)}/>
             <input type="text" required placeholder="Surname" onChange={(e) => setSurname(e.target.value)}/> 
             <input type="text" required placeholder="Second name" onChange={(e) => setSecondName(e.target.value)}/> 
             <DayPickerInput
-                inputProps={{ style: { width: '300px' } }}
+                inputProps={{ style: { width: '396px' } }}
                 onDayChange={handleDayChange}
                     dayPickerProps={{
                         month: new Date(),
                         showWeekNumbers: true,
                 }}
             />
-            <input type="email" required placeholder="Email" onChange={(e) => setEmail(e.target.value)}/> 
-            <input type="password" required placeholder="Password" pattern={passwordPattern} onChange={(e) => setPassword(e.target.value) }/> 
-            <input type="password" required placeholder="Repeat password" pattern={passwordPattern} onChange={e => setRepeatPassword(e.target.value)}/> 
+            <input type="email" required placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" onChange={(e) => setEmail(e.target.value)}/> 
+            <input type="password" required placeholder="Password" onChange={(e) => setPassword(e.target.value) }/> 
+            <input type="password" required placeholder="Repeat password" onChange={e => setRepeatPassword(e.target.value)}/> 
             <input type="submit" value="Register"/>
         </form>
-    </>;
+    </div>;
 }
 
 export default RegistrationForm;

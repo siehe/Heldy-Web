@@ -47,13 +47,13 @@ const TaskCreationForm = ({handleClose}) => {
             <button onClick={handleClose} className={styles.button}>X</button>
             <h4>Create task</h4>
             <form onSubmit={handleSubmit}>
-                <input type="text" onChange={e => setStatement(e.target.value)} placeholder="Task name (Lab #5)"/>
+                <input type="text" required onChange={e => setStatement(e.target.value)} placeholder="Task name (Lab #5)"/>
                 <DayPickerInput onDayChange={handleDayChange}
                         dayPickerProps={{
                             month: new Date(),
                             showWeekNumbers: true,
                     }}></DayPickerInput>
-                <textarea type="textarea" placeholder="Description" onChange={e => setDescription(e.target.value)}/>
+                <textarea type="textarea" placeholder="Description (optional)" onChange={e => setDescription(e.target.value)}/>
                 <input type="submit"/>
             </form>
         </div>

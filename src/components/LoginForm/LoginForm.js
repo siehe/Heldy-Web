@@ -4,6 +4,8 @@ import { Redirect } from 'react-router-dom';
 import { logOut } from '../../store/actions/logOut';
 import styles from './LoginForm.module.scss';
 
+import logo from '../../icons/logo.png';
+
 const LoginForm = () => {
     const dispatch = useDispatch();
     const [ email, setEmail ] = useState('');
@@ -37,11 +39,15 @@ const LoginForm = () => {
     }
 
     return isRedirect ? <Redirect to={{pathname: '/board'}}/> : <div className={styles.container}>
-        <form onSubmit={handleSubmit} className={styles.form}>
-            <input type="text" placeholder="Email" onChange={(e) => setEmail(e.target.value)}/>
-            <input type="text" placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
-            <input type="submit"/>
-        </form>
+        <div className={styles.wrapper}>
+            <img src={logo} />
+            <h3>Log In</h3>
+            <form onSubmit={handleSubmit} className={styles.form}>
+                <input type="text" required placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" onChange={(e) => setEmail(e.target.value)}/>
+                <input type="text" required placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
+                <input type="submit"/>
+            </form>
+        </div>
     </div>;
 };
 

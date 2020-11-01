@@ -1,10 +1,7 @@
 .container {
     position: absolute;
-    width: 100%;
-    height: 90%;
     display: grid;
-    padding-bottom: 200px;
-    padding-right: 300px;
+    left: 800px;
     place-content: center;
     .formWrapper {
         display: flex;
