@@ -1,0 +1,15 @@
+form {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    width: 300px;
+    height: 50%;
+    input {
+        border: none;
+        border: .5px solid lightblue;
+    }
+    input[type="submit"] {
+        background-color: transparent;
+        cursor: pointer;
+    }
+}

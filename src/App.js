@@ -7,6 +7,8 @@ import './index.scss';
 import styles from './App.module.scss';
 
 import HomePage from './pages/Home.js';
+import RegistrationPage from './pages/RegistrationPage/RegistrationPage.js';
+import LoginPage from './pages/LoginPage/LoginPage.js';
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
         <Route path="/board"/>
         <Route path="/forum"/>
         <Route path="/settings"/>
+        <Route path="/registration" component={RegistrationPage}></Route>
+        <Route path="/login" component={LoginPage}></Route>
       </Switch>
     </div>
   );
