@@ -1,0 +1,24 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    background-color: #FFF0E7;
+    height: 150px;
+    margin-top: 10px;
+    padding-left: 15px;
+    form {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-between;
+        padding: 100px;
+        input[type="submit"] {
+            cursor: pointer;
+            background-color: transparent;
+        }
+        input {
+            background-color: #FFEADD;
+            border: none;
+            border-bottom: 1px dashed black;
+        }
+    }
+}

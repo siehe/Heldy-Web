@@ -3,6 +3,7 @@ import { RESOLVE_USER_LIST } from "../actions/userList";
 import { LOG_OUT } from '../actions/logOut';
 import { SHOW_WARNING } from "../actions/warning.js";
 import { SET_BOARD_COLUMNS } from "../actions/boardColumns";
+import { LOAD_TASKS_TYPES } from "../actions/loadTasksTypes";
 
 const initialState = {
   userTasksList: [],
@@ -14,6 +15,11 @@ const initialState = {
 
 export const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+    case LOAD_TASKS_TYPES: 
+      return {
+        ...state,
+        types: action.types,
+      }
     case SET_BOARD_COLUMNS: 
       return {
         ...state,

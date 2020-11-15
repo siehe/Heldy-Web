@@ -1,0 +1,28 @@
+.pageWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 50px;
+    min-height: 600px;
+    height: max-content;
+    .courseName {
+        display: flex;
+        width: min-content;
+        flex-direction: column;
+        input {
+            border: none;
+            border-bottom: 1px dashed black;
+        }
+    }
+    button {
+        cursor: pointer;
+        align-self: flex-end;
+        width: max-content;
+        padding: 5px;
+        background-color: #FED3BB;
+        border: none;
+        img {
+            width: 25px;
+        }
+    }
+}
