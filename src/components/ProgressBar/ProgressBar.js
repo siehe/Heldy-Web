@@ -11,8 +11,7 @@ const ProgressBar = ({boardColumns}) => {
 
     return <div className={styles.wrapper}>
         <div>
-            <span style={{ width: Math.round((done/allTasksAmount) * 100) }}>
-            </span>
+            <span style={{ width: Math.round((done/allTasksAmount) * 100) }}></span>
             <span className={styles.text}>{ `${Math.round((done/allTasksAmount) * 100)} / ${100}` }</span>
         </div>
     </div>
