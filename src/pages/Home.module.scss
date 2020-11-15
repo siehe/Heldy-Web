@@ -35,4 +35,10 @@
             border-radius: 3px;
         }
     }
+    .progressBarWrapper {
+        display: flex;
+        flex-direction: row-reverse;
+        margin-right: 50px;
+        height: min-content;
+    }
 }

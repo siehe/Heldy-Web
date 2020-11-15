@@ -1,0 +1,14 @@
+.wrapper {
+    border: 1px solid black;
+    div {
+        border: 1px solid black;
+        width: 300px;
+        margin: 10px;
+        span {
+            background-color: #76DBBD;
+        }
+        .text {
+            position: relative;
+        }
+    }
+}

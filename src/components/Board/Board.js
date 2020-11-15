@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loadUserList } from '../../store/actions/userList';
 import { loadUserCategories } from '../../store/actions/userCategories';
 import { showWarning } from '../../store/actions/warning';
+import { setBoardColumns } from '../../store/actions/boardColumns';
 
 const getColumn = (id, lists) => lists.find(el => el.id === +id);
 
@@ -17,8 +18,7 @@ const Board = () => {
     const userTasksList = useSelector((store) => store.userTasksList);
     const userColumns = useSelector((store) => store.userColumns);
     const isWarningShown = useSelector((store) => store.isWarningShown);
-
-    const [boardColumns, setBoardColumns] = useState([]);
+    const boardColumns = useSelector((store) => store.boardColumns);
 
     useEffect(() => {
         dispatch(loadUserCategories());
@@ -27,7 +27,7 @@ const Board = () => {
 
     useEffect(() => {
         if(userTasksList.length && userColumns.length) {
-            setBoardColumns(modifyBoardLists(userTasksList, userColumns));
+            dispatch(setBoardColumns(modifyBoardLists(userTasksList, userColumns)));
         }
     }, [userTasksList, userColumns])
 
@@ -79,8 +79,7 @@ const Board = () => {
             columns.splice(newColumnStart.id - 1, 1, newColumnStart);
             
             columns.splice(newColumnFinish.id - 1, 1, newColumnFinish);
-            console.log(columns);
-            setBoardColumns(columns);
+            dispatch(setBoardColumns(columns));
         }
     }
 
