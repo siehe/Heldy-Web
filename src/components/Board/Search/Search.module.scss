@@ -1,29 +1,30 @@
+@font-face {
+    font-family: 'Montserrat';
+    src: 'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap';
+}
+
 .container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
+    margin-left: 10px;
     
     form {
         input[type="image"] {
             width: 30px;
-            height: 25px;
             margin: 2px;
         }
         input[type="text"] {
-            border-radius: 5px;
+            border-radius: 45px;
+            font-family: 'Montserrat';
+            border: 1px solid #CACACA;
+            padding: 5px;
+            padding-left: 10px;
+            margin-left: 25px;
         }
-    }
-    button {
-        width: 100px;
-        font-size: 20px;
-        height: 45px;
-        border: none;
-        cursor: pointer;
-        background: #FAFAFA;
-        border: 0.25px solid #000000;
-        box-sizing: border-box;
-        border-radius: 8px;
-        border-radius: 3px;
+        input[type="text"]::placeholder {
+            font-size: 30px;
+        }
     }
 }
