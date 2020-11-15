@@ -5,6 +5,7 @@ import { SHOW_WARNING } from "../actions/warning.js";
 import { SET_BOARD_COLUMNS } from "../actions/boardColumns";
 import { LOAD_TASKS_TYPES } from "../actions/loadTasksTypes";
 import { PUSH_COURSE_TASK } from '../actions/courseTasksCreation';
+import { EDIT_TASK } from "../actions/editTask";
 
 const initialState = {
   userTasksList: [],
@@ -13,10 +14,18 @@ const initialState = {
   isWarningShown: false,
   boardColumns: [],
   courseTasks: [],
+  editTask: {},
+  isEditTaskShown: false,
 };
 
 export const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+    case EDIT_TASK:
+      return {
+        ...state,
+        editTask: action.payload.task,
+        isEditTaskShown: action.payload.isEditTaskShown,
+      }
     case PUSH_COURSE_TASK: 
       return {
         ...state,

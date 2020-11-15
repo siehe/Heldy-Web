@@ -4,11 +4,11 @@ import CourseForm from '../../components/CourseForm/CourseForm';
 
 import styles from './CreateCourse.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { loadTasksTypes } from '../../store/actions/loadTasksTypes';
+// import { loadTasksTypes } from '../../store/actions/loadTasksTypes';
 
 const CreateCoursePage = () => {
-    const dispatch = useDispatch();
-    const tasksTypes = useSelector(store => store.types);
+    // const dispatch = useDispatch();
+    // const tasksTypes = useSelector(store => store.types);
     const courseTasks = useSelector(store => store.courseTasks);
     const [ title, setCourseName ] = useState('');
     const [ createCourseForms, setCreateCourseForms ] = useState([]); 

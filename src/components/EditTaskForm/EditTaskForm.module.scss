@@ -1,0 +1,33 @@
+.wrapper {
+    position: absolute;
+    background-color: #FFEADD;
+    top: 350px;
+    left: 850px;
+    form {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        padding: 20px;
+        height: 330px;
+        fieldset {
+            display: flex;
+            flex-direction: row;
+            padding: 0;
+            border: none;
+        }
+        input[type="submit"] {
+            background-color: green;
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            width: 200px;
+        }
+        input[type="button"] {
+            background-color: red;
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            width: 200px;
+        }
+    }
+}

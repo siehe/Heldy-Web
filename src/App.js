@@ -13,15 +13,18 @@ import { useSelector } from 'react-redux';
 import Warning from './components/Warning/Warning';
 import CreateCoursePage from './pages/CreateCourse/CreateCoursePage.js';
 import ProfilePage from './pages/ProfilePage/ProfilePage.js';
+import EditTaskForm from './components/EditTaskForm/EditTaskForm.js';
 
 function App() {
   const isLoggedIn = useSelector((store) => store.isLoggedIn);
   const isWarningShown = useSelector((store) => store.isWarningShown);
+  const isEditTaskShown = useSelector(store => store.isEditTaskShown);
 
   return (
     <div className={isLoggedIn ? styles.mainWrapper : ''}>
       {isLoggedIn ? <Aside /> : null}
       {isWarningShown ? <Warning /> : null }
+      {isEditTaskShown ? <EditTaskForm /> : null }
       <Switch>
         <Route path="/board" component={HomePage}/>
         <Route path="/profile" component={ProfilePage}/>

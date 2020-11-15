@@ -3,7 +3,6 @@ import React from 'react';
 import styles from './ProgressBar.module.scss';
 
 const ProgressBar = ({boardColumns}) => {
-    console.log(boardColumns);
     const done = boardColumns[3].lists.length;
     const allTasksAmount = boardColumns.reduce((acc, curr) => {
         return acc + curr.lists.length;

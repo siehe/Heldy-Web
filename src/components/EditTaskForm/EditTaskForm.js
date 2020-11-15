@@ -1,54 +1,86 @@
 import React, { useState } from 'react';
 import DayPickerInput from 'react-day-picker/DayPickerInput'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { loadUserList } from '../../store/actions/userList';
 import { loadUserCategories } from '../../store/actions/userCategories';
 
-const EditTaskForm = (task) => {
-    console.log(task);
+import styles from './EditTaskForm.module.scss';
+import { editTask } from '../../store/actions/editTask';
+
+const EditTaskForm = () => {
     const dispatch = useDispatch();
-    const [statement, setStatement] = useState('');
-    const [description, setDescription] = useState('');
+    const task = useSelector(store => store.editTask);
+    const [statement, setStatement] = useState(task.statement);
+    const [description, setDescription] = useState(task.description);
     const [deadline, setDeadline] = useState(new Date());
 
     const handleDayChange = (selectedDay) => {
         setDeadline(selectedDay);
     }
 
+    const handleCancel = (e) => {
+        e.preventDefault();
+        dispatch(editTask({
+            isEditTaskShown: false,
+            task,
+        }));
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch('https://localhost:44369/tasks', {
-            method: "POST",
+        console.log(task);
+        console.log(JSON.stringify({
+            id: task.id,
+            deadline,
+            statement,
+            description,
+            subjectId: task.subejct.id,
+            assigneeId: task.assignee.id,
+            authorId: task.author.id,
+            typeId: task.type.id,
+            statusId: task.status.id,
+        }));
+        fetch('https://localhost:44369/tasks/' + task.id, {
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": "Bearer " + localStorage.getItem('token'),
             },
             body: JSON.stringify({
+                id: task.id,
                 deadline,
                 statement,
                 description,
-                subjectId: 1,
-                assigneeId: 2,
-                authorId: localStorage.getItem('userId'),
-                typeId: 1,
-                statusId: 1,
-            })
+                subjectId: task.subejct.id,
+                assigneeId: task.assignee.id,
+                authorId: task.author.id,
+                typeId: task.type.id,
+                statusId: task.status.id,
+            }),
         }).then(() => {
             dispatch(loadUserCategories());
             dispatch(loadUserList(localStorage.getItem('userId')));
+            dispatch(editTask({
+                isEditTaskShown: false,
+                task,
+            }));
         })
     }
 
-    return <div>
+    return <div className={styles.wrapper}>
         <form onSubmit={handleSubmit}>
             Edit Task
-            <input type="text" required onChange={e => setStatement(e.target.value)} placeholder="Task name (Lab #5)" value={''}/>
-            <input type="textarea" placeholder="Description (optional)" value={''} onChange={e => setDescription(e.target.value)}/>
+            <input type="text" required onChange={e => setStatement(e.target.value)} placeholder="Task name (Lab #5)" value={statement}/>
+            <input type="textarea" placeholder="Description (optional)" value={description} onChange={e => setDescription(e.target.value)}/>
             <DayPickerInput onDayChange={handleDayChange}
                         dayPickerProps={{
-                            month: new Date(),
+                            month: new Date(task.deadline),
                             showWeekNumbers: true,
                     }}></DayPickerInput>
+            <fieldset>
+                <input type="submit" value="Edit"/>
+                <input type="button" value="Cancel" onClick={handleCancel}/>
+            </fieldset>
         </form>
     </div>
 }
