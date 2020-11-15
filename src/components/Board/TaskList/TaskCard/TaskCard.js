@@ -14,7 +14,8 @@ const TaskCard = ({ task = {}, index }) => {
       >
         <div className={styles.container}>
           <div className={styles.header}>
-            <span>{task.author.name + " "  + task.author.surname.split("")[0].toUpperCase() + "."}</span>
+            <span className={styles.subject}>CDM (hardcode)</span>
+            <span className={styles.lecturer}>{"Lecturer: " + task.author.name + " "  + task.author.surname.split("")[0].toUpperCase() + "."}</span>
           </div>
           <div className={styles.description}>
             <span>{task.statement}</span>

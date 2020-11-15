@@ -10,8 +10,8 @@ const Search = ({ handleDisplayTaskCreationClick }) => {
 
     return <div className={styles.container}>
         <form name="searchForm">
-            <input type="image" alt="s" src={loupe} onClick={handleClick}/>
             <input placeholder="Search..." type="text"/>
+            <input type="image" alt="s" src={loupe} onClick={handleClick}/>
         </form>
         <button onClick={handleDisplayTaskCreationClick}> Create new task </button>
     </div>
