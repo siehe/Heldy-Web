@@ -12,6 +12,7 @@ import LoginPage from './pages/LoginPage/LoginPage.js';
 import { useSelector } from 'react-redux';
 import Warning from './components/Warning/Warning';
 import CreateCoursePage from './pages/CreateCourse/CreateCoursePage.js';
+import ProfilePage from './pages/ProfilePage/ProfilePage.js';
 
 function App() {
   const isLoggedIn = useSelector((store) => store.isLoggedIn);
@@ -23,7 +24,7 @@ function App() {
       {isWarningShown ? <Warning /> : null }
       <Switch>
         <Route path="/board" component={HomePage}/>
-        <Route path="/profile"/>
+        <Route path="/profile" component={ProfilePage}/>
         <Route path="/board"/>
         <Route path="/create-course" component={CreateCoursePage}/>
         <Route path="/forum"/>
