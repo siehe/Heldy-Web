@@ -33,7 +33,7 @@ const TaskCreationForm = ({handleClose}) => {
                 assigneeId: 2,
                 authorId: 1,
                 typeId: 1,
-                statusId: 3,
+                statusId: 1,
             })
         }).then(() => {
             dispatch(loadUserCategories());

@@ -8,6 +8,7 @@ import styles from './Board.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadUserList } from '../../store/actions/userList';
 import { loadUserCategories } from '../../store/actions/userCategories';
+import { showWarning } from '../../store/actions/warning';
 
 const getColumn = (id, lists) => lists.find(el => el.id === +id);
 
@@ -15,6 +16,7 @@ const Board = () => {
     const dispatch = useDispatch();
     const userTasksList = useSelector((store) => store.userTasksList);
     const userColumns = useSelector((store) => store.userColumns);
+    const isWarningShown = useSelector((store) => store.isWarningShown);
 
     const [boardColumns, setBoardColumns] = useState([]);
 
@@ -28,6 +30,12 @@ const Board = () => {
             setBoardColumns(modifyBoardLists(userTasksList, userColumns));
         }
     }, [userTasksList, userColumns])
+
+    useEffect(() => {
+        if(boardColumns.length && boardColumns[0].lists.length >= 10) {
+            dispatch(showWarning(!isWarningShown));
+        }
+    }, [boardColumns])
 
     const onDragEnd = (result) => {
         const { source, destination } = result;

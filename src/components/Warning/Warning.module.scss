@@ -1,0 +1,28 @@
+.wrapper {
+    font-size: 23px;
+    background-color: #FFEADF;
+    position: absolute;
+    top: 400px;
+    left: 850px;
+    width: 400px;
+    height: fit-content;
+    display: flex;
+    flex-flow: column;
+    justify-content: end;
+    align-items: flex-end;
+    padding: 10px;
+    .headline {
+        border-bottom: 2px solid gray;
+    }
+    button { 
+        background-color: transparent;
+        border: none;
+        padding-right: 25px;
+        padding-top: 10px;
+        cursor: pointer;
+    }
+    span {
+        display: block;
+        align-self: center;
+    }
+}

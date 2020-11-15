@@ -10,13 +10,16 @@ import HomePage from './pages/Home.js';
 import RegistrationPage from './pages/RegistrationPage/RegistrationPage.js';
 import LoginPage from './pages/LoginPage/LoginPage.js';
 import { useSelector } from 'react-redux';
+import Warning from './components/Warning/Warning';
 
 function App() {
   const isLoggedIn = useSelector((store) => store.isLoggedIn);
+  const isWarningShown = useSelector((store) => store.isWarningShown);
 
   return (
     <div className={isLoggedIn ? styles.mainWrapper : ''}>
       {isLoggedIn ? <Aside /> : null}
+      {isWarningShown ? <Warning /> : null }
       <Switch>
         <Route path="/board" component={HomePage}/>
         <Route path="/profile"/>
