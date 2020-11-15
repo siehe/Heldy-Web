@@ -11,6 +11,7 @@ import RegistrationPage from './pages/RegistrationPage/RegistrationPage.js';
 import LoginPage from './pages/LoginPage/LoginPage.js';
 import { useSelector } from 'react-redux';
 import Warning from './components/Warning/Warning';
+import CreateCoursePage from './pages/CreateCourse/CreateCoursePage.js';
 
 function App() {
   const isLoggedIn = useSelector((store) => store.isLoggedIn);
@@ -24,6 +25,7 @@ function App() {
         <Route path="/board" component={HomePage}/>
         <Route path="/profile"/>
         <Route path="/board"/>
+        <Route path="/create-course" component={CreateCoursePage}/>
         <Route path="/forum"/>
         <Route path="/settings"/>
         <Route path="/registration" component={RegistrationPage}></Route>
