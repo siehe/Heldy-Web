@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap');
+
 .rootWrapper {
     width: 100%;
     min-height: 100%;
@@ -29,10 +31,9 @@
             border: none;
             cursor: pointer;
             background: #FAFAFA;
-            border: 0.25px solid #000000;
             box-sizing: border-box;
-            border-radius: 8px;
-            border-radius: 3px;
+            border-radius: 12px;
+            font-family: 'Montserrat';
         }
     }
     .progressBarWrapper {
