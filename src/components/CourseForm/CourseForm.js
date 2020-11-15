@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
+import { useDispatch } from 'react-redux';
 import { Icon } from 'semantic-ui-react';
+import { pushTask } from '../../store/actions/courseTasksCreation';
 
 import styles from './CourseForm.module.scss';
 
 const CourseForm = ({index}) => {
+    const dispatch = useDispatch();
     const [ taskName, setTaskName ] = useState('');
     const [ date, setStartDate ] = useState(new Date());
 
@@ -15,6 +18,16 @@ const CourseForm = ({index}) => {
     
     const handleSubmit = e => {
         e.preventDefault();
+        const task = {
+            statement: taskName,
+            deadline: date,
+            description: '',
+            assigneeId: Number(localStorage.getItem('userId')),
+            authorId: Number(localStorage.getItem('userId')),
+            typeId: 1,
+            statusId: 1
+        };
+        dispatch(pushTask(task));
     };
 
     const handleTaskNameInput = e => {
@@ -40,7 +53,6 @@ const CourseForm = ({index}) => {
             </div>
             <input type="submit" value="SUBMIT"/>
         </form>
-        <button>-</button>
     </div>
 };
 

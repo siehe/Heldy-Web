@@ -14,11 +14,12 @@ const TaskCard = ({ task = {}, index }) => {
       >
         <div className={styles.container}>
           <div className={styles.header}>
-            <span className={styles.subject}>CDM (hardcode)</span>
+            <span className={styles.subject}>{task.statement}</span>
             <span className={styles.lecturer}>{"Lecturer: " + task.author.name + " "  + task.author.surname.split("")[0].toUpperCase() + "."}</span>
           </div>
           <div className={styles.description}>
-            <span>{task.statement}</span>
+            <span>{task.type.name}</span>
+            <span>Due: {(new Date(task.deadline)).toDateString()}</span>
           </div>
         </div>
       </div>

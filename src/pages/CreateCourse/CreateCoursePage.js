@@ -9,17 +9,38 @@ import { loadTasksTypes } from '../../store/actions/loadTasksTypes';
 const CreateCoursePage = () => {
     const dispatch = useDispatch();
     const tasksTypes = useSelector(store => store.types);
-    const [ courseName, setCourseName ] = useState('');
+    const courseTasks = useSelector(store => store.courseTasks);
+    const [ title, setCourseName ] = useState('');
     const [ createCourseForms, setCreateCourseForms ] = useState([]); 
 
+    const handleSubmit = async (e) => {
+        console.log(JSON.stringify({
+            title,
+            credits: 0,
+            tasks: courseTasks,
+        }));
+        fetch('https://localhost:44369/subjects', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + localStorage.getItem('token'),
+            },
+            body: JSON.stringify({
+                title,
+                credits: 0,
+                tasks: courseTasks,
+            })
+        })
+    }
+ 
     const handleClick = e => {
         setCreateCourseForms([...createCourseForms, 1]);
     };
 
     useEffect(() => {
-        if(!tasksTypes) {
-            dispatch(loadTasksTypes());
-        }
+        // if(!tasksTypes) {
+        //     dispatch(loadTasksTypes());
+        // }
     }, []);
 
     return <div className={styles.pageWrapper}>
@@ -30,6 +51,7 @@ const CreateCoursePage = () => {
         </div>
         { createCourseForms.map((el, i) => (<CourseForm key={i} index={i}></CourseForm>)) }
         <button onClick={handleClick}> <img src={plusIcon} alt="s"/> Add task </button>
+        <button onClick={handleSubmit}> <img src={plusIcon} alt="s"/> Submit </button>
     </div>
 };
 

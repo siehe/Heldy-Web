@@ -30,6 +30,8 @@
         }
     }
     .description {
+        display: flex;
+        flex-direction: column;
         padding: 5px;
         background-color: white;
         font-family: 'Sen';

@@ -22,7 +22,7 @@ const Board = () => {
 
     useEffect(() => {
         dispatch(loadUserCategories());
-        dispatch(loadUserList(2));
+        dispatch(loadUserList(localStorage.getItem('userId')));
     }, [])
 
     useEffect(() => {

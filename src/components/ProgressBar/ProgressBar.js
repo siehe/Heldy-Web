@@ -8,12 +8,11 @@ const ProgressBar = ({boardColumns}) => {
     const allTasksAmount = boardColumns.reduce((acc, curr) => {
         return acc + curr.lists.length;
     }, 0);
-
+    const percent = Math.round((done/allTasksAmount) * 100);
     return <div className={styles.wrapper}>
-        <div>
-            <span style={{ width: Math.round((done/allTasksAmount) * 100) }}></span>
-            <span className={styles.text}>{ `${Math.round((done/allTasksAmount) * 100)} / ${100}` }</span>
-        </div>
+            <div className={styles.text}
+                  style={{ background: `linear-gradient(to right, ${percent ? '#76DBBD' : 'white'} ${percent}%, white ${100 - percent}%)`}}
+            >{`${percent} / ${100}`}</div>
     </div>
 };
 

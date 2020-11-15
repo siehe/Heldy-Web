@@ -1,14 +1,13 @@
 .wrapper {
     border: 1px solid black;
-    div {
+    .text {
         border: 1px solid black;
-        width: 300px;
+        width: 400px;
         margin: 10px;
-        span {
-            background-color: #76DBBD;
-        }
-        .text {
-            position: relative;
-        }
+        display: flex;
+        flex-direction: row;
+        display: flex;
+        justify-content: center;
+        // background-color: #76DBBD;
     }
 }
