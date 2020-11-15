@@ -1,27 +1,38 @@
-.card {
-    background-color: #c4c4c4a4;
-}
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sen&display=swap');
+
 .container {
     font-size: 20px;
     border: 1px solid lightgrey;
+    border-radius: 15px;
     .header {
         display: flex;
         flex-direction: column;
         border: transparent;
-        border-radius: 10px;
+        border-radius: 10px 10px 0 0;
+        background-color: #CDCDCD;
+        padding: 5px 3px 5px 3px;
         span { 
-            height: 45px;
+            font-size: 14px;
             line-height: 20px;
             overflow: hidden;
-            padding-top: 10px;
-            padding-left: 80px;
+            padding-left: 20px;
             text-overflow: ellipsis;
             word-wrap: break-word;
-            background-color: rgba(196, 196, 196, 0.6);
+            font-family: 'Montserrat';
+            font-weight: 500;
+        }
+        .subject {
+            font-size: 22px;
+        }
+        .lecturer {
+            padding-top: 5px;
         }
     }
     .description {
-        display: flex;
-        justify-content: center;
+        padding: 5px;
+        background-color: white;
+        font-family: 'Sen';
+        text-align: center;
     }
 }
