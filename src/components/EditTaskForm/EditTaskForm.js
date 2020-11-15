@@ -28,19 +28,7 @@ const EditTaskForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(task);
-        console.log(JSON.stringify({
-            id: task.id,
-            deadline,
-            statement,
-            description,
-            subjectId: task.subejct.id,
-            assigneeId: task.assignee.id,
-            authorId: task.author.id,
-            typeId: task.type.id,
-            statusId: task.status.id,
-        }));
-        fetch('https://localhost:44369/tasks/' + task.id, {
+        fetch('https://heldy-api-pupi.azurewebsites.net/tasks/' + task.id, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",

@@ -6,6 +6,7 @@ import { SET_BOARD_COLUMNS } from "../actions/boardColumns";
 import { LOAD_TASKS_TYPES } from "../actions/loadTasksTypes";
 import { PUSH_COURSE_TASK } from '../actions/courseTasksCreation';
 import { EDIT_TASK } from "../actions/editTask";
+import { PUT_USER_INFO } from "../actions/getUserInfo";
 
 const initialState = {
   userTasksList: [],
@@ -20,6 +21,13 @@ const initialState = {
 
 export const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+    case PUT_USER_INFO: {
+      console.log(action);
+      return {
+        ...state,
+        userInfo: action.userInfo,
+      }
+    }
     case EDIT_TASK:
       return {
         ...state,

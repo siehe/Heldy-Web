@@ -19,7 +19,7 @@ const LoginForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch("https://localhost:44369/account/login", {
+        fetch("https://heldy-api-pupi.azurewebsites.net/account/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

@@ -19,7 +19,7 @@ const CreateCoursePage = () => {
             credits: 0,
             tasks: courseTasks,
         }));
-        fetch('https://localhost:44369/subjects', {
+        fetch('https://heldy-api-pupi.azurewebsites.net/subjects', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

@@ -2,7 +2,7 @@ import { call, put, takeEvery } from 'redux-saga/effects';
 import { LOAD_USER_COLUMNS, RESOLVE_USER_COLUMNS } from '../actions/userCategories';
 
 export function* fetchUserCategories() {
-  const endpoint = 'https://localhost:44369/columns/';
+  const endpoint = 'https://heldy-api-pupi.azurewebsites.net/columns/';
 
   const apiCall = () => {
     return fetch(endpoint, {

@@ -22,7 +22,7 @@ const RegistrationForm = () => {
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
-        fetch('https://localhost:44369/account/registration', {
+        fetch('https://heldy-api-pupi.azurewebsites.net/account/registration', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

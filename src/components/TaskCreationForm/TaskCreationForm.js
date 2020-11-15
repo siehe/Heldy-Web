@@ -19,7 +19,7 @@ const TaskCreationForm = ({handleClose}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch('https://localhost:44369/tasks', {
+        fetch('https://heldy-api-pupi.azurewebsites.net/tasks', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

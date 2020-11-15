@@ -1,14 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUserInfo } from '../../store/actions/getUserInfo';
 import styles from './ProfilePage.module.scss';
 
 const ProfilePage = () => {
-    return <div className={styles.wrapper}>
+    const dispacth = useDispatch();
+    const user = useSelector(store => store.userInfo);
+
+    useEffect(() => {
+        dispacth(getUserInfo());
+    }, []);
+
+    return user && <div className={styles.wrapper}>
         <h2>Profile page</h2>
         <form>
             <div className={styles.row}>
                 <div className={styles.cell}>
                     <span>Name</span><br></br>
-                    <input type="text" name="name" />
+                    <input type="text" name="name"/>
                 </div>
                 <div>
                     <span>Surname</span><br></br>

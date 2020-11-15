@@ -1,8 +1,8 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
-import { LOAD_TASKS_TYPES } from '../actions/loadTasksTypes';
+import { GET_USER_INFO, putUserInfo, PUT_USER_INFO } from '../actions/getUserInfo';
 
-export function* fetchTasksTypes() {
-    const endpoint = 'https://heldy-api-pupi.azurewebsites.net/types/';
+export function* fetchUserInfo() {
+    const endpoint = 'https://heldy-api-pupi.azurewebsites.net/persons/' + localStorage.getItem('userId');
     const apiCall = () => {
       return fetch(endpoint, {
         headers: {
@@ -15,9 +15,10 @@ export function* fetchTasksTypes() {
   
     const response = yield call(apiCall);
     const data = yield response.json();
-    yield put({ type: LOAD_TASKS_TYPES, types: data });
+
+    yield put(putUserInfo({userInfo: data}));
   }
   
-  export function* loadTasksTypes() {
-    yield takeEvery(LOAD_TASKS_TYPES, fetchTasksTypes);
-  }
+  export function* loadUserInfo() {
+    yield takeEvery(GET_USER_INFO, fetchUserInfo);
+}
