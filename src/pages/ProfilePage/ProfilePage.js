@@ -24,7 +24,7 @@ const ProfilePage = () => {
             }).catch(e => console.log(e.message));
     }, []);
 
-    const submitEdir = e => {
+    const submitEdit = e => {
         e.preventDefault();
 
         fetch()
