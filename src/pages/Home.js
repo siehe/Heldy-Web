@@ -25,7 +25,7 @@ const HomePage = () => {
     return isRedirect ? <Redirect to={{
         pathname: '/student-registration'
     }}/> : <div className={styles.rootWrapper}>
-        <h1>Student board</h1>
+        <h1>Board</h1>
         <div className={styles.contentWrapper}>
             <div className={styles.header}>
                 <Search handleDisplayTaskCreationClick={handleDisplayTaskCreationClick}/>
