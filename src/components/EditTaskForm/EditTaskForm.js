@@ -57,10 +57,10 @@ const EditTaskForm = () => {
 
     return <div className={styles.wrapper}>
         <form onSubmit={handleSubmit}>
-            Edit Task
-            <input type="text" required onChange={e => setStatement(e.target.value)} placeholder="Task name (Lab #5)" value={statement}/>
-            <input type="textarea" placeholder="Description (optional)" value={description} onChange={e => setDescription(e.target.value)}/>
-            <DayPickerInput onDayChange={handleDayChange}
+            Editing the task
+            <input type="text" className="textField" required onChange={e => setStatement(e.target.value)} placeholder="Task name (Lab #5)" value={statement}/>
+            <input type="textarea" className="textField" placeholder="Description (optional)" value={description} onChange={e => setDescription(e.target.value)}/>
+            <DayPickerInput className="textField" onDayChange={handleDayChange}
                         dayPickerProps={{
                             month: new Date(task.deadline),
                             showWeekNumbers: true,
