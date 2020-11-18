@@ -6,7 +6,7 @@ import styles from './TaskList.module.scss';
 const TaskList = ({tasks = [], name, id }) => {
     return <div className={styles.listWrapper}>
         <h5>{name}</h5>
-        <Droppable droppableId={id.toString()}>
+        <Droppable droppableId={id.toString()} className={styles.column}>
             {(provided, snapshot) =>
             <ul {...provided.droppableProps}
                 ref={provided.innerRef}

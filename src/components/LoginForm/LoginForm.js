@@ -45,7 +45,7 @@ const LoginForm = () => {
             <h3 >Log in</h3>
             <form onSubmit={handleSubmit} className={styles.form}>
                 <input type="text" required placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" onChange={(e) => setEmail(e.target.value)} />
-                <input type="text" required placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+                <input type="password" required placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
                 <input type="submit" value="Log in" />
             </form>
         </div>

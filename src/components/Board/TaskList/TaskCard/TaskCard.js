@@ -25,14 +25,14 @@ const TaskCard = ({ task = {}, index }) => {
         isDragging={snapshot.isDragging}
       >
         <div className={styles.container}>
-          <button onDoubleClick={handleClick}>edit</button>
           <div className={styles.header}>
             <span className={styles.subject}>{task.statement}</span>
             <span className={styles.lecturer}>{"Lecturer: " + task.author.name + " "  + task.author.surname.split("")[0].toUpperCase() + "."}</span>
           </div>
           <div className={styles.description}>
-            <span>{task.type.name}</span>
-            <span>Due: {(new Date(task.deadline)).toDateString()}</span>
+            <span className={styles.typeName}>{task.type.name}</span>
+            <span>Due:</span> <p>{(new Date(task.deadline)).toDateString()}</p>
+            <button onDoubleClick={handleClick}>Edit</button>
           </div>
         </div>
       </div>
