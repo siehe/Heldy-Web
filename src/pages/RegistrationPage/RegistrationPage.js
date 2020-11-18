@@ -11,7 +11,6 @@ const RegistrationPage = () => {
         pathname: '/board'
     }}/> : <div className={styles.container}>
         <RegistrationForm />
-        <button onClick={() => setIsRedirect(!isRedirect)}>back to the board</button> 
     </div>;
 }
 

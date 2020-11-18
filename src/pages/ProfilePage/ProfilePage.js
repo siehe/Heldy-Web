@@ -73,7 +73,7 @@ const ProfilePage = () => {
                     <input type="text" name="text" disabled/>
                 </div>
             </div>
-            <input type="submit" value="Підтвердити зміни" />
+            <input type="submit" value="Submit" />
         </form>
     </div> : null;
 }
