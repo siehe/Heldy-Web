@@ -4,7 +4,8 @@
     background-color: #FFF0E7;
     height: 150px;
     margin-top: 10px;
-    padding-left: 15px;
+    padding-left: 20px;
+    border-radius: 25px;
     form {
         display: flex;
         flex-direction: row;
@@ -16,9 +17,10 @@
             background-color: transparent;
         }
         input {
-            background-color: #FFEADD;
+            background-color: transparent;
             border: none;
-            border-bottom: 1px dashed black;
+            border-bottom: 1px solid #CACACA;
+            font-family: 'Montserrat';
         }
     }
 }
