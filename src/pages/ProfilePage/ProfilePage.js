@@ -16,7 +16,7 @@ const ProfilePage = () => {
             },
           },).then(res => res.json()).then(data => 
             {
-                setName(data);
+                setUserInfo(data);
                 setName(data.name);
                 setSecondName(data.secondName);
                 setEmail(data.email);
@@ -27,12 +27,23 @@ const ProfilePage = () => {
     const submitEdit = e => {
         e.preventDefault();
 
-        fetch()
+        fetch('https://heldy-api-pupi.azurewebsites.net/persons/' + userInfo.id, {
+            method: "PUT",
+            headers:{
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + localStorage.getItem('token'),
+            },
+            body: JSON.stringify({
+                name,
+                surname,
+                secondName,
+            }),
+        })
     }
 
     return userInfo ? <div className={styles.wrapper}>
         <h2>Profile page</h2>
-        <form>
+        <form onSubmit={submitEdit}>
             <div className={styles.row}>
                 <div className={styles.cell}>
                     <span>Name</span><br></br>
@@ -73,7 +84,7 @@ const ProfilePage = () => {
                     <input type="text" name="text" disabled/>
                 </div>
             </div>
-            <input type="submit" value="Підтвердити зміни" />
+            <input type="submit" value="Submit" style={{ cursor: 'pointer' }}/>
         </form>
     </div> : null;
 }

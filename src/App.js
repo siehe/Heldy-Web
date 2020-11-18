@@ -14,6 +14,7 @@ import Warning from './components/Warning/Warning';
 import CreateCoursePage from './pages/CreateCourse/CreateCoursePage.js';
 import ProfilePage from './pages/ProfilePage/ProfilePage.js';
 import EditTaskForm from './components/EditTaskForm/EditTaskForm.js';
+import StudentRegistration from './components/StudentRegistration/StudentRegistration.js';
 
 function App() {
   const isLoggedIn = useSelector((store) => store.isLoggedIn);
@@ -34,6 +35,7 @@ function App() {
         <Route path="/settings"/>
         <Route path="/registration" component={RegistrationPage}></Route>
         <Route path="/login" component={LoginPage}></Route>
+        <Route path="/student-registration" component={StudentRegistration}></Route>
       </Switch>
     </div>
   );

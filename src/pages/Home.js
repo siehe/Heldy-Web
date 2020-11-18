@@ -23,7 +23,7 @@ const HomePage = () => {
     }
 
     return isRedirect ? <Redirect to={{
-        pathname: '/registration'
+        pathname: '/student-registration'
     }}/> : <div className={styles.rootWrapper}>
         <h1>Student board</h1>
         <div className={styles.contentWrapper}>
