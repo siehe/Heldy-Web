@@ -23,6 +23,7 @@ const TaskCard = ({ task = {}, index }) => {
         {...provided.dragHandleProps}
         ref={provided.innerRef}
         isDragging={snapshot.isDragging}
+        className={styles.wrapper}
       >
         <div className={styles.container}>
           <div className={styles.header}>

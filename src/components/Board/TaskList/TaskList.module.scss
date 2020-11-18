@@ -1,15 +1,16 @@
 .listWrapper {
     display: flex;
     flex-flow: column;
-    align-items: center;
-    justify-content: center;
+    align-items: center;    
     border-radius: 10px 10px 0px 0px;
     padding: 10px;
     height: 100%;
     border: 1px solid #CACACA;
     background-color: #FFF5DE;
 
-    ul {
+    column {
         background-color: transparent;
+        min-width: 300px;
+        height: 400px;
     }
 }

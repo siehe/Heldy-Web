@@ -8,12 +8,12 @@ const TaskList = ({tasks = [], name, id }) => {
         <h5>{name}</h5>
         <Droppable droppableId={id.toString()} className={styles.column}>
             {(provided, snapshot) =>
-            <ul {...provided.droppableProps}
+            <div {...provided.droppableProps}
                 ref={provided.innerRef}
                 isDraggingOver={snapshot.isDraggingOver}>
                     {(tasks.map((task, index) => (<TaskCard task={task} key={task.id} index={index}/>)))}
                 {provided.placeholder}
-            </ul>}
+            </div>}
         </Droppable>
     </div>
 };
