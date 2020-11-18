@@ -45,11 +45,11 @@ const TaskCard = ({ task = {}, index }) => {
         <div className={styles.container}>
           <div className={styles.header}>
             <span className={styles.subject}>{task.statement}</span>
-            <span className={styles.lecturer}>{"Lecturer: " + task.author.name + " "  + task.author.surname.split("")[0].toUpperCase() + "."}</span>
+            <span className={styles.lecturer}>{task.author.surname && ("Lecturer: " + task.author.name + " "  + task.author.surname.split("")[0].toUpperCase() + ".")}</span>
           </div>
           <div className={styles.description}>
-            <span className={styles.typeName}>{task.type.name}</span>
-            <span>Due:</span> <p>{(new Date(task.deadline)).toDateString()}</p>
+            <span className={styles.typeName}>{task.type.name || ''}</span>
+            <span>Due:</span> <p>{(new Date(task.deadline)).toDateString() || ''}</p>
             <button onDoubleClick={handleClick}>Edit</button>
             <button onClick={handleDelete}>Delete</button>
           </div>
