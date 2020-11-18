@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import styles from './StudentRegistration.module.scss';
 
 const alertSuccess = (text) => {
-    return <div>
+    return <div className={styles.alert}>
         {text}
     </div>
 }
@@ -32,9 +32,9 @@ const StudentRegistration = () => {
             })
         }).then(data => {
             if(data.ok) {
-                setText('!isDisplayed');
+                setText('Registration is sucsseded');
             } else {
-                setText('isDisplayed');
+                setText('Something went wrong');
             }
         }).then(() => {
             setIsDisplayed(!isDisplayed);
