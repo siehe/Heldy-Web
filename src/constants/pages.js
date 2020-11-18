@@ -7,5 +7,5 @@ export const pagesNames = {
     createCourse: {name: 'Course', path: '/create-course', src: ''},
     qa: {name: 'Q&A', path: '/forum', src: ''},
     settings: {name: 'Settings', path: '/settings',src: ''},
-    logOut: {name: 'LogOut', path: '/login', src: ''},
+    logOut: {name: 'Log out', path: '/login', src: ''},
 };
