@@ -15,6 +15,7 @@ import CreateCoursePage from './pages/CreateCourse/CreateCoursePage.js';
 import ProfilePage from './pages/ProfilePage/ProfilePage.js';
 import EditTaskForm from './components/EditTaskForm/EditTaskForm.js';
 import StudentRegistration from './components/StudentRegistration/StudentRegistration.js';
+import EntryPage from './pages/EntryPage/EntryPage.js';
 
 function App() {
   const isLoggedIn = useSelector((store) => store.isLoggedIn);
@@ -27,9 +28,9 @@ function App() {
       {isWarningShown ? <Warning /> : null }
       {isEditTaskShown ? <EditTaskForm /> : null }
       <Switch>
+        <Route path="/entry" component={EntryPage}/>
         <Route path="/board" component={HomePage}/>
         <Route path="/profile" component={ProfilePage}/>
-        <Route path="/board"/>
         <Route path="/create-course" component={CreateCoursePage}/>
         <Route path="/forum"/>
         <Route path="/settings"/>
