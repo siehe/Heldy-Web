@@ -1,3 +1,5 @@
+
+
 .pageWrapper {
     display: flex;
     flex-direction: column;
@@ -11,18 +13,19 @@
         flex-direction: column;
         input {
             border: none;
-            border-bottom: 1px dashed black;
+            border-bottom: 1px solid #CACACA;
+            font-family: 'Montserrat';
         }
     }
     button {
         cursor: pointer;
         align-self: flex-end;
         width: max-content;
-        padding: 5px;
+        padding: 10px;
         background-color: #FED3BB;
         border: none;
-        img {
-            width: 25px;
-        }
+        font-family: 'Montserrat';
+        font-size: 25px;
+        border-radius: 15px;
     }
 }
