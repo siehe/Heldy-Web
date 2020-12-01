@@ -60,7 +60,7 @@ export const rootReducer = (state = initialState, action) => {
       isLoggedIn: action.payload,
     }
     case RESOLVE_USER_LIST:
-        return {
+      return {
             ...state,
             userTasksList: action.userList,
         }

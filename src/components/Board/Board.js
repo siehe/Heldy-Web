@@ -1,15 +1,15 @@
-import React, { useEffect } from 'react';
-import { DragDropContext } from 'react-beautiful-dnd';
+import React, {useEffect} from 'react';
+import {DragDropContext} from 'react-beautiful-dnd';
 import TaskList from './TaskList/TaskList';
 
-import { modifyBoardLists } from '../../utils/boardUtil';
+import {modifyBoardLists} from '../../utils/boardUtil';
 
 import styles from './Board.module.scss';
-import { useDispatch, useSelector } from 'react-redux';
-import { loadUserList } from '../../store/actions/userList';
-import { loadUserCategories } from '../../store/actions/userCategories';
-import { showWarning } from '../../store/actions/warning';
-import { setBoardColumns } from '../../store/actions/boardColumns';
+import {useDispatch, useSelector} from 'react-redux';
+import {loadUserList} from '../../store/actions/userList';
+import {loadUserCategories} from '../../store/actions/userCategories';
+import {showWarning} from '../../store/actions/warning';
+import {setBoardColumns} from '../../store/actions/boardColumns';
 
 const getColumn = (id, lists) => lists.find(el => el.id === +id);
 
@@ -26,22 +26,22 @@ const Board = () => {
     }, [])
 
     useEffect(() => {
-        if(userTasksList.length && userColumns.length) {
+        if (userTasksList.length && userColumns.length) {
             dispatch(setBoardColumns(modifyBoardLists(userTasksList, userColumns)));
         }
     }, [userTasksList, userColumns])
 
     useEffect(() => {
-        if(boardColumns.length && boardColumns[0].lists.length >= 10) {
+        if (boardColumns.length && boardColumns[0].lists.length >= 10) {
             dispatch(showWarning(!isWarningShown));
         }
     }, [boardColumns])
 
     const onDragEnd = (result) => {
-        const { source, destination } = result;
+        const {source, destination} = result;
 
         if (!destination) {
-          return;
+            return;
         }
 
         if (destination.droppableId === source.droppableId && destination.index === source.index) {
@@ -77,17 +77,22 @@ const Board = () => {
             }
 
             columns.splice(newColumnStart.id - 1, 1, newColumnStart);
-            
+
             columns.splice(newColumnFinish.id - 1, 1, newColumnFinish);
             dispatch(setBoardColumns(columns));
+
         }
     }
 
-    return <div className={styles.boardWrapper}>
-        <DragDropContext onDragEnd={onDragEnd}>
-            {boardColumns.map(({ name, id, lists }) => (<TaskList tasks={lists} name={name} id={id} key={id}></TaskList>))}
-        </DragDropContext>
-    </div>
+
+    return userTasksList && (
+        <div className={styles.boardWrapper}>
+            <DragDropContext onDragEnd={onDragEnd}>
+                {boardColumns.map(({name, id, lists}) => (
+                    <TaskList tasks={lists} name={name} id={id} key={id}></TaskList>))}
+            </DragDropContext>
+        </div>
+    )
 }
 
 export default Board;
