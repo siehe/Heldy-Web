@@ -20,19 +20,11 @@ const ForumItem = ({ id, getComments, question = "No question", answear = "No an
                 text: commentText,
             }),
         })
-<<<<<<< HEAD
-            .then(res => {
-                if (res.ok) {
-                    getComments();
-                }
-            });
-=======
         .then(res => {
             if (res.ok) {
                 getComments();
             }
         });
->>>>>>> 3423ff6bff7ee2333213e03db6e0301e8b0ec8e5
     };
 
     return (

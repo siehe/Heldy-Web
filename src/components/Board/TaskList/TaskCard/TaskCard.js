@@ -12,12 +12,12 @@ import { alerts } from '../../../../constants/warning';
 const TaskCard = ({ task = {}, index }) => {
     const dispatch = useDispatch(); 
     const isEditTaskShown = useSelector(store => store.isEditTaskShown);
-<<<<<<< HEAD
+
     const [grade, setGrade] = useState('');
     const userRole = localStorage.getItem('role');
-=======
+
     const isWarningShown = useSelector(store => store.isWarningShown);
->>>>>>> 3423ff6bff7ee2333213e03db6e0301e8b0ec8e5
+
 
     const { status: { id } } = task;
     const isTaskProblems = id === 5;
@@ -25,6 +25,8 @@ const TaskCard = ({ task = {}, index }) => {
     const userId = localStorage.getItem('userId');
     const authorId = task.author.id;
     const isYourTask = userId === authorId;
+
+    const urlRegex = /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/;
     
     const handleClick = () => {
       dispatch(editTask({
@@ -94,6 +96,18 @@ const TaskCard = ({ task = {}, index }) => {
         })
     }
 
+    const getComments = () => {
+        let arr = [];
+        task.comments.forEach(item => {
+            const res = urlRegex.exec(item.text);
+            if(res !== null){
+                arr.push(res[0])
+            }
+        })
+        return arr;
+    }
+    const comments = getComments();
+
     return <Draggable draggableId={task.id.toString()} index={index}>
     {(provided, snapshot) => (
       <div
@@ -114,6 +128,11 @@ const TaskCard = ({ task = {}, index }) => {
           <div className={styles.description}>
             <span className={styles.typeName}>{task.type.name || ''}</span>
             <span>Due:</span> <p>{(new Date(task.deadline)).toDateString() || ''}</p>
+              {comments.length > 0
+              ? <div>
+                      {comments.map((item, index) => <a href={item}>Resourse {index + 1}</a>)}
+                  </div>
+              :null}
 
               {task.status.name === 'Done'
                   ? <span>{task.grade}</span>
