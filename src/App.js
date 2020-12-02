@@ -16,6 +16,7 @@ import ProfilePage from './pages/ProfilePage/ProfilePage.js';
 import EditTaskForm from './components/EditTaskForm/EditTaskForm.js';
 import StudentRegistration from './components/StudentRegistration/StudentRegistration.js';
 import EntryPage from './pages/EntryPage/EntryPage.js';
+import QAPage from './pages/Q&APage/Q&APage.js';
 
 function App() {
   const isLoggedIn = useSelector((store) => store.isLoggedIn);
@@ -32,7 +33,7 @@ function App() {
         <Route path="/board" component={HomePage}/>
         <Route path="/profile" component={ProfilePage}/>
         <Route path="/create-course" component={CreateCoursePage}/>
-        <Route path="/forum"/>
+        <Route path="/forum" component={QAPage}/>
         <Route path="/settings"/>
         <Route path="/registration" component={RegistrationPage}></Route>
         <Route path="/login" component={LoginPage}></Route>

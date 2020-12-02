@@ -7,6 +7,8 @@ import { LOAD_TASKS_TYPES } from "../actions/loadTasksTypes";
 import { PUSH_COURSE_TASK } from '../actions/courseTasksCreation';
 import { EDIT_TASK } from "../actions/editTask";
 import { PUT_USER_INFO } from "../actions/getUserInfo";
+import { RESOLVE_COMMENTS } from "../actions/comments";
+import { mapTasksComments } from "../../utils/mapTasksComments";
 
 const initialState = {
   userTasksList: [],
@@ -17,12 +19,13 @@ const initialState = {
   courseTasks: [],
   editTask: {},
   isEditTaskShown: false,
+  text: '',
+  alertHeader: '',
 };
 
 export const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case PUT_USER_INFO: {
-      console.log(action);
       return {
         ...state,
         userInfo: action.userInfo,
@@ -52,7 +55,9 @@ export const rootReducer = (state = initialState, action) => {
     case SHOW_WARNING:
       return {
         ...state,
-        isWarningShown: action.payload
+        isWarningShown: action.payload.show,
+        text: action.payload.text,
+        alertHeader: action.payload.header,
       }
     case LOG_OUT:
       return {
@@ -69,6 +74,13 @@ export const rootReducer = (state = initialState, action) => {
             ...state,
             userColumns: action.userColumns,
         }
+    }
+    case RESOLVE_COMMENTS: {
+      const mappedTasks = mapTasksComments(state.userTasksList, action.payload);
+      return {
+        ...state,
+        userTasksList: mappedTasks,
+      }
     }
     default:
       return state;

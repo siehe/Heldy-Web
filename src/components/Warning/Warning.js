@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { showWarning } from '../../store/actions/warning';
 
@@ -7,6 +7,14 @@ import styles from './Warning.module.scss';
 const Warning = () => {
     const dispatch = useDispatch();
     const isWarningShown = useSelector((store) => store.isWarningShown);
+    const text = useSelector(store => store.text);
+    const header = useSelector(store => store.alertHeader);
+    
+    useEffect(() => {
+        setTimeout(() => {
+            dispatch(showWarning(!isWarningShown));
+        }, 3000);
+    }, [])
 
     const handleClick = e => {
         e.preventDefault();
@@ -17,10 +25,9 @@ const Warning = () => {
         <button onClick={handleClick}>
             X
         </button>
-        <span className={styles.headline}>Warning!</span>
+        <span className={styles.headline}>{header}</span>
         <div>
-            We must inform that you have too many undone tasks on your list.
-            <span>Please, try to hurry up!</span>
+            {text}
         </div>
     </div> : null;
 };
