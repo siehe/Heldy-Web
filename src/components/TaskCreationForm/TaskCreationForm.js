@@ -3,6 +3,7 @@ import DayPickerInput from 'react-day-picker/DayPickerInput';
 import { useDispatch } from 'react-redux';
 import { loadUserList } from '../../store/actions/userList';
 import { loadUserCategories } from '../../store/actions/userCategories';
+import { colomns } from '../../constants/tasks';
 
 import styles from './TaskCreationForm.module.scss';
 
@@ -12,9 +13,14 @@ const TaskCreationForm = ({handleClose}) => {
     const [statement, setStatement] = useState('');
     const [description, setDescription] = useState('');
     const [deadline, setDeadline] = useState(new Date());
+    const [statusId, setStatusId ] = useState(1);
 
     const handleDayChange = (selectedDay) => {
         setDeadline(selectedDay);
+    }
+
+    const handleStatusChange = e => {
+        setStatusId(Number(e.target.value));
     }
 
     const handleSubmit = (e) => {
@@ -33,7 +39,7 @@ const TaskCreationForm = ({handleClose}) => {
                 assigneeId: Number(localStorage.getItem('userId')),
                 authorId: Number(localStorage.getItem('userId')),
                 typeId: 1,
-                statusId: 1,
+                statusId,
             })
         }).then(() => {
             dispatch(loadUserCategories());
@@ -48,6 +54,14 @@ const TaskCreationForm = ({handleClose}) => {
             <h4>Create task</h4>
             <form onSubmit={handleSubmit}>
                 <input type="text" required onChange={e => setStatement(e.target.value)} placeholder="Task name (Lab #5)"/>
+                <div className={styles.dropdown}>
+                    <span>Status:</span>
+                    <select onChange={handleStatusChange}>
+                        {colomns.map(({id, name}) => {
+                            return <option value={id}>{name}</option>
+                        })}
+                    </select>
+                </div>
                 <DayPickerInput onDayChange={handleDayChange}
                         dayPickerProps={{
                             month: new Date(),

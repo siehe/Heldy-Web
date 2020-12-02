@@ -11,27 +11,37 @@
     height: fit-content;
     margin-bottom: 10px;
     .header {
-        display: flex;
-        flex-direction: column;
-        border: transparent;
-        border-radius: 10px 10px 0 0;
-        background-color: #D7EAFF;
-        padding: 5px 3px 5px 3px;
-        span { 
-            font-size: 14px;
-            line-height: 20px;
-            overflow: hidden;
-            padding-left: 20px;
-            text-overflow: ellipsis;
-            word-wrap: break-word;
-            font-family: 'Montserrat';
-            font-weight: 500;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #D7EAFF;
+    padding: 5px 3px 5px 3px;
+    border-radius: 10px 10px 0 0;
+    border: transparent;
+        .headerContent {
+            display: flex;
+            flex-direction: column;
+            border: transparent;
+            span { 
+                font-size: 14px;
+                line-height: 20px;
+                overflow: hidden;
+                padding-left: 20px;
+                text-overflow: ellipsis;
+                word-wrap: break-word;
+                font-family: 'Montserrat';
+                font-weight: 500;
+            }
+            .subject {
+                font-size: 22px;
+            }
+            .lecturer {
+                padding-top: 5px;
+            }
         }
-        .subject {
-            font-size: 22px;
-        }
-        .lecturer {
-            padding-top: 5px;
+        img {
+            margin: 5px;
+            height: 25px;
         }
     }
     .description {

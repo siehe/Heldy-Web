@@ -24,6 +24,16 @@
             margin: 0;
             padding: 0;
         }
+        .dropdown {
+            width: 100%;
+            font-size: 25px;
+            padding: 10px;
+            select {
+                width: 100%;
+                border-radius: 10px;
+                cursor: pointer;
+            }
+        }
         form {
             border-radius: 7px;
             padding: 20px;

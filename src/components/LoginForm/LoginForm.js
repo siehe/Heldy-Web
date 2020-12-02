@@ -31,6 +31,7 @@ const LoginForm = () => {
             if (data.accessToken) {
                 localStorage.setItem('token', data.accessToken);
                 localStorage.setItem('userId', data.userId);
+                localStorage.setItem('role', data.roleId);
                 dispatch(logOut(true));
                 setIsRedirect(true);
             }

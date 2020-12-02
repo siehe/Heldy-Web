@@ -32,8 +32,13 @@ const Board = () => {
     }, [userTasksList, userColumns])
 
     useEffect(() => {
+<<<<<<< HEAD
         if (boardColumns.length && boardColumns[0].lists.length >= 10) {
             dispatch(showWarning(!isWarningShown));
+=======
+        if(boardColumns.length && boardColumns[0].lists.length >= 10) {
+            dispatch(showWarning({ show: !isWarningShown, text: 'text', header: 'Warning!' }));
+>>>>>>> 3423ff6bff7ee2333213e03db6e0301e8b0ec8e5
         }
     }, [boardColumns])
 
