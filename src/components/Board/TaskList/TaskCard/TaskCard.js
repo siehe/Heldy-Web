@@ -16,7 +16,11 @@ const TaskCard = ({ task = {}, index }) => {
 
     const { status: { id } } = task;
     const isTaskProblems = id === 5;
-
+    const isTeacher = (+localStorage.getItem('role')) === 1;
+    const userId = localStorage.getItem('userId');
+    const authorId = task.author.id;
+    const isYourTask = userId === authorId;
+    
     const handleClick = () => {
       dispatch(editTask({
         task,
@@ -87,7 +91,7 @@ const TaskCard = ({ task = {}, index }) => {
             <span className={styles.typeName}>{task.type.name || ''}</span>
             <span>Due:</span> <p>{(new Date(task.deadline)).toDateString() || ''}</p>
             <button onDoubleClick={handleClick}>Edit</button>
-            <button onClick={handleDelete}>Delete</button>
+            {!isYourTask && (<button onClick={handleDelete}>Delete</button>)}
           </div>
         </div>
       </div>

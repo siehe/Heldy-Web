@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import ForumComment from './ForumComment/ForumComment';
 
-const ForumItem = ({id, getComments, question = "No question", answear = "No answear", deadline = new Date(), type, subject, comments = [] }) => {
-    const [ commentText, setCommentText ] = useState('');
+import styles from './ForumItem.module.scss';
+
+const ForumItem = ({ id, getComments, question = "No question", answear = "No answear", deadline = new Date(), type, subject, comments = [] }) => {
+    const [commentText, setCommentText] = useState('');
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -19,33 +21,39 @@ const ForumItem = ({id, getComments, question = "No question", answear = "No ans
             }),
         })
         .then(res => {
-            if(res.ok) {
+            if (res.ok) {
                 getComments();
             }
         });
     };
 
-    return <div>
-        <div>Theme: {question}
-        </div>
-        <div>
-            Question: {answear}
-            <div>
+    return (
+        <div className={styles.wrapper}>
+            <div className={styles.firstRow}>
+                <span>Topic: {question}</span>
                 <span>Asked at: {deadline.toDateString()}</span>
-                <span>{type}</span>
-                <span>{subject}</span>
+            </div>
+            <div>
+                <p className={styles.question}>Question: {answear}</p>
+                <div>
+                    <span>{type}</span>
+                    <span>{subject}</span>
+                </div>
+            </div>
+            <div className={styles.teacherPart}>
+                <div className={styles.comments}>
+                    <p>Teacher's answers</p>
+                    {comments.map(({ text, id }) => <ForumComment key={id} text={text} />)}
+                </div>
+                <form onSubmit={handleSubmit}>
+                    <textarea type="text" placeholder="Leave your comment" value={commentText} onChange={e => setCommentText(e.target.value)} />
+                    <div>
+                        <input type="submit" value="Send the comment" />
+                    </div>
+                </form>
             </div>
         </div>
-        <div>
-            {comments.map(({text, id}) => <ForumComment key={id} text={text}/> )}
-        </div>
-        <div>
-            <form onSubmit={handleSubmit}>
-                <textarea type="text" placeholder="Leave your comment" value={commentText} onChange={e => setCommentText(e.target.value)}/>
-                <input type="submit" value="Comment"/>
-            </form>
-        </div>
-    </div>
+    );
 };
 
 export default ForumItem;
