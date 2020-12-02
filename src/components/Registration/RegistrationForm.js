@@ -1,12 +1,13 @@
 import React, {useState} from 'react';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
+import { Redirect } from 'react-router-dom';
 
 import styles from './RegistrationForm.module.scss';
 
 
 const RegistrationForm = () => {
-    const passwordPattern = "(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}";
+    const passwordPattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})";
 
     const [dob, setStartDate] = useState(new Date());
     const [name, SetName] = useState('');
@@ -15,6 +16,7 @@ const RegistrationForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [repeatPassowrd, setRepeatPassword] = useState('');
+    const [ isRedirect, setIsRedirect ] = useState(false);
 
     const handleDayChange = (selectedDay) => {
         setStartDate(selectedDay);
@@ -35,10 +37,14 @@ const RegistrationForm = () => {
                 email,
                 password,
             }),
-        }).then(data => console.log(data))
+        }).then(data => {
+            if(data.ok) {
+                setIsRedirect(!isRedirect);
+            }
+        })
     }
 
-    return <div className={styles.container}>
+    return !isRedirect ? <div className={styles.container}>
         <h4>
             Sign up
         </h4>
@@ -59,7 +65,9 @@ const RegistrationForm = () => {
             <input type="password" required placeholder="Repeat password" onChange={e => setRepeatPassword(e.target.value)}/> 
             <input type="submit" value="Register"/>
         </form>
-    </div>;
+    </div> : <Redirect to={{
+        pathname: "/login"
+    }}/>;
 }
 
 export default RegistrationForm;

@@ -33,7 +33,7 @@ const Board = () => {
 
     useEffect(() => {
         if(boardColumns.length && boardColumns[0].lists.length >= 10) {
-            dispatch(showWarning(!isWarningShown));
+            dispatch(showWarning({ show: !isWarningShown, text: 'text', header: 'Warning!' }));
         }
     }, [boardColumns])
 
