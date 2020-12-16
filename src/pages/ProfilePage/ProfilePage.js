@@ -49,10 +49,10 @@ const ProfilePage = () => {
         formData.append('personId', userId);
 
         const files = Array.from(e.target.files)
-        files.forEach((file,i) => {
-            formData.append(i,file);
+        files.forEach((file, i) => {
+            formData.append(i, file);
         })
-        await fetch('https://heldy-api-pupi.azurewebsites.net/account/updateProfileImage',{
+        await fetch('https://heldy-api-pupi.azurewebsites.net/account/updateProfileImage', {
             method: 'POST',
             headers: {
                 "Authorization": "Bearer " + localStorage.getItem('token'),
@@ -63,11 +63,8 @@ const ProfilePage = () => {
 
     return userInfo ? <div className={styles.wrapper}>
         <h2>Profile page</h2>
-        <div className={styles.formWrapper}>
-            <div className={styles.image}>
-                <img src="https://lh3.googleusercontent.com/proxy/K7GKBAbfyFpA-BburUAuTPloINJDMACAOMGZZklbTScZDDuaRquEnohzQ3-RemwCxyzC5SQ6fgTGAZlQHgi0ooV9s6Zz4FMHV6p7sPY1rG-NOKt9n414HbVQzIhjtZojbptcAJMElTAqyPhXwafOF-R6TSKqpTVPp4SsTyKXTaX9ZYH5R23M7x0pU1uEzDEHoUUl_6oBI1rT-keiYc2yKHTnti0SOSsBUQ_W8Eq20na5gk7ncFGuLs7YG_AjH7YSUkc0s8oiNqQm8_ryk7lXd9o26GolIbqA9i-aV7sSMKFpQ7hITBIZSUFZT3yRciB0T42pe_YVMRu_AsULyaTz_tv2hPwEjWbk__FwSm6oLPEFabFxHmqcOgZ-nSnOIFxdg-ekS1KW8tSabIQ71nIj5jzpGvRxgnIyTKD5rlRsyHU78qGSy8bSXWDR4soAp9ZzNyyxN65GRltwX5I4e3ae7b_y6e66DExZhqBFADgTjiRSMb5FxKIeMIFgyIZXy1YayeycoJOSxUEeHf5-t2gsfBSXv9sgAK7XHxTN1RQcohcTYxuhXXDJbKIZhDhYd1yVvNNxo7E"/>
-            </div>
-            <form onSubmit={submitEdit}>
+        <form onSubmit={submitEdit}>
+            <div className={styles.formWrapper}>
                 <div className={styles.row}>
                     <div className={styles.cell}>
                         <span>Name</span><br></br>
@@ -108,24 +105,12 @@ const ProfilePage = () => {
                         <input type="text" name="text" disabled />
                     </div>
                 </div>
-                </form>
-            </div>
-            <form>
-            <div className={styles.row}>
-                <div className={styles.cell}>
-                    <span>Skype</span><br></br>
-                    <input type="text" name="skype" disabled />
-                </div>
-                <div>
-                    <span>Telegram</span><br></br>
-                    <input type="text" name="text" disabled />
-                </div>
+                <input type="submit" value="Submit" style={{ cursor: 'pointer' }} />
             </div>
             <div className={styles.imageContainer}>
-                <img src={'https://heldy-api-pupi.azurewebsites.net/file/' + image} width='200px' height='200px'/>
-                <input type='file' id='file-input' onChange={(event => fileChangeHandler(event))}/>
+                <img src={'https://heldy-api-pupi.azurewebsites.net/file/' + image} width='200px' height='200px' />
+                <input type='file' id='file-input' onChange={(event => fileChangeHandler(event))} />
             </div>
-            <input type="submit" value="Submit" style={{ cursor: 'pointer' }} />
         </form>
     </div> : null;
 }
