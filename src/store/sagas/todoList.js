@@ -33,13 +33,19 @@ export function* fetchToDoList({payload}) {
 
   const tasksIds = data.map(({ id }) => id);
 
+  const newData = data.sort((a, b) => {
+    const aDate = new Date(a.deadline);
+    const bDate = new Date(b.deadline);
+    return bDate - aDate;
+  });
+
   const comments = [];
   for(let id of tasksIds) {
     const response = yield call(apiCallComments(id));
     const data = yield response.json();
     comments.push(...data);
   }
-  const res = mapTasksComments(data, comments);
+  const res = mapTasksComments(newData, comments);
   yield put({ type: RESOLVE_USER_LIST, userList: res });
 }
 

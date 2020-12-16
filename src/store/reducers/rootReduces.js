@@ -9,6 +9,7 @@ import { EDIT_TASK } from "../actions/editTask";
 import { PUT_USER_INFO } from "../actions/getUserInfo";
 import { RESOLVE_COMMENTS } from "../actions/comments";
 import { mapTasksComments } from "../../utils/mapTasksComments";
+import { modifyBoardLists } from "../../utils/boardUtil";
 
 const initialState = {
   userTasksList: [],
@@ -21,6 +22,7 @@ const initialState = {
   isEditTaskShown: false,
   text: '',
   alertHeader: '',
+  searchedTasks: [],
 };
 
 export const rootReducer = (state = initialState, action) => {
@@ -80,6 +82,13 @@ export const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         userTasksList: mappedTasks,
+      }
+    }
+    case 'SET_SEARCHED_TASKS': {
+      console.log(action.searchedTasks);
+      return {
+        ...state,
+        searchedTasks: modifyBoardLists(action.searchedTasks, state.userColumns)
       }
     }
     default:

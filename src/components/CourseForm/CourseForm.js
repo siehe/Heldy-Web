@@ -46,6 +46,7 @@ const CourseForm = ({index}) => {
                         showWeekNumbers: true,
                 }}
                 placeholder="Enter deadline"
+                dayPickerProps={{ disabledDays: { before: new Date() } }}
             />
             <div>
                 <Icon name="upload"></Icon>

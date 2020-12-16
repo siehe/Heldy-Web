@@ -58,6 +58,7 @@ const RegistrationForm = () => {
                     dayPickerProps={{
                         month: new Date(),
                         showWeekNumbers: true,
+                        disabledDays: {before: new Date()}
                 }}
             />
             <input type="email" required placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" onChange={(e) => setEmail(e.target.value)}/> 

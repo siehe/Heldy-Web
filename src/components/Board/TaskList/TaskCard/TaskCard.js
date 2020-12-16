@@ -14,14 +14,12 @@ const TaskCard = ({ task = {}, index }) => {
     const isEditTaskShown = useSelector(store => store.isEditTaskShown);
 
     const [grade, setGrade] = useState('');
-    const userRole = localStorage.getItem('role');
-
+    const userRole = +localStorage.getItem('role');
     const isWarningShown = useSelector(store => store.isWarningShown);
 
 
     const { status: { id } } = task;
     const isTaskProblems = id === 5;
-    const isTeacher = (+localStorage.getItem('role')) === 1;
     const userId = localStorage.getItem('userId');
     const authorId = task.author.id;
     const isYourTask = userId === authorId;
@@ -138,9 +136,9 @@ const TaskCard = ({ task = {}, index }) => {
                   ? <span>{task.grade}</span>
                   : null}
 
-              {task.status.name === 'Examination' && userRole === 'Admin'
+              {task.status.name === 'Examination' && userRole === 1
                   ? <div>
-                      <input placeholder='grade' onChange={(event => setGrade(event.target.value))}/>
+                      <input type="number" min="0" pattern="^-\d$" placeholder='grade' onChange={(event => setGrade(event.target.value))}/>
                       <button onClick={() => gradeSubmitHandler()}>submit</button>
                   </div>
               : null}

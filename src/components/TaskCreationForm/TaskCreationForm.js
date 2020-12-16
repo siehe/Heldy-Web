@@ -66,6 +66,7 @@ const TaskCreationForm = ({handleClose}) => {
                         dayPickerProps={{
                             month: new Date(),
                             showWeekNumbers: true,
+                            disabledDays: {before: new Date()}
                     }}></DayPickerInput>
                 <textarea type="textarea" placeholder="Description (optional)" onChange={e => setDescription(e.target.value)}/>
                 <input type="submit"/>

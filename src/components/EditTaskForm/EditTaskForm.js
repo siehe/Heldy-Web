@@ -64,6 +64,7 @@ const EditTaskForm = () => {
                         dayPickerProps={{
                             month: new Date(task.deadline),
                             showWeekNumbers: true,
+                            disabledDays: {before: new Date()}
                     }}></DayPickerInput>
             <fieldset>
                 <input type="submit" value="Edit"/>

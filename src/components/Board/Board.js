@@ -19,6 +19,7 @@ const Board = () => {
     const userColumns = useSelector((store) => store.userColumns);
     const isWarningShown = useSelector((store) => store.isWarningShown);
     const boardColumns = useSelector((store) => store.boardColumns);
+    const { searchedTasks } = useSelector(store => store);
 
     useEffect(() => {
         dispatch(loadUserCategories());
@@ -29,7 +30,11 @@ const Board = () => {
         if (userTasksList.length && userColumns.length) {
             dispatch(setBoardColumns(modifyBoardLists(userTasksList, userColumns)));
         }
-    }, [userTasksList, userColumns])
+    }, [userTasksList, userColumns]);
+
+    useEffect(() => {
+        dispatch(loadUserCategories());
+    }, [searchedTasks]);
 
     useEffect(() => {
         if(boardColumns.length && boardColumns[0].lists.length >= 10) {
@@ -84,13 +89,16 @@ const Board = () => {
         }
     }
 
-
+    console.log(boardColumns);
     return userTasksList && (
         <div className={styles.boardWrapper}>
-            <DragDropContext onDragEnd={onDragEnd}>
+            {searchedTasks.length ? <DragDropContext onDragEnd={onDragEnd}>
+                {searchedTasks.map(({name, id, lists}) => (
+                    <TaskList tasks={lists} name={name} id={id} key={id}></TaskList>))}
+            </DragDropContext> : (<DragDropContext onDragEnd={onDragEnd}>
                 {boardColumns.map(({name, id, lists}) => (
                     <TaskList tasks={lists} name={name} id={id} key={id}></TaskList>))}
-            </DragDropContext>
+            </DragDropContext>) }
         </div>
     )
 }
