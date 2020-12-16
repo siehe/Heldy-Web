@@ -7,6 +7,9 @@ const ProfilePage = () => {
     const [surname, setSurname] = useState('');
     const [email, setEmail] = useState('');
     const [secondName, setSecondName] = useState();
+    const [image, setImage] = useState('');
+
+    const userId = localStorage.getItem('userId')
 
     useEffect(() => {
         fetch('https://heldy-api-pupi.azurewebsites.net/persons/' + localStorage.getItem('userId'), {
@@ -20,6 +23,7 @@ const ProfilePage = () => {
             setSecondName(data.secondName);
             setEmail(data.email);
             setSurname(data.surname);
+            setImage(data.image);
         }).catch(e => console.log(e.message));
     }, []);
 
@@ -37,6 +41,23 @@ const ProfilePage = () => {
                 surname,
                 secondName,
             }),
+        })
+    }
+
+    const fileChangeHandler = async (e) => {
+        const formData = new FormData();
+        formData.append('personId', userId);
+
+        const files = Array.from(e.target.files)
+        files.forEach((file,i) => {
+            formData.append(i,file);
+        })
+        await fetch('https://heldy-api-pupi.azurewebsites.net/account/updateProfileImage',{
+            method: 'POST',
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem('token'),
+            },
+            body: formData
         })
     }
 
@@ -87,9 +108,25 @@ const ProfilePage = () => {
                         <input type="text" name="text" disabled />
                     </div>
                 </div>
-                <input type="submit" value="Submit" style={{ cursor: 'pointer' }} />
-            </form>
-        </div>
+                </form>
+            </div>
+            <form>
+            <div className={styles.row}>
+                <div className={styles.cell}>
+                    <span>Skype</span><br></br>
+                    <input type="text" name="skype" disabled />
+                </div>
+                <div>
+                    <span>Telegram</span><br></br>
+                    <input type="text" name="text" disabled />
+                </div>
+            </div>
+            <div className={styles.imageContainer}>
+                <img src={'https://heldy-api-pupi.azurewebsites.net/file/' + image} width='200px' height='200px'/>
+                <input type='file' id='file-input' onChange={(event => fileChangeHandler(event))}/>
+            </div>
+            <input type="submit" value="Submit" style={{ cursor: 'pointer' }} />
+        </form>
     </div> : null;
 }
 

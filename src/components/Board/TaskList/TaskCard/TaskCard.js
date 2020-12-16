@@ -136,7 +136,7 @@ const TaskCard = ({ task = {}, index }) => {
                   ? <span>{task.grade}</span>
                   : null}
 
-              {task.status.name === 'Examination' && userRole === 1
+              {task.status.name === 'Examination' && userRole === '1'
                   ? <div>
                       <input type="number" min="0" pattern="^-\d$" placeholder='grade' onChange={(event => setGrade(event.target.value))}/>
                       <button onClick={() => gradeSubmitHandler()}>submit</button>

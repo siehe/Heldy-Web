@@ -20,6 +20,10 @@
         flex-direction: column;
         justify-content: space-between;
 
+        .imageContainer{
+            margin-top: 10px;
+        }
+
         .row {
             display: flex;
             flex-direction: row;
